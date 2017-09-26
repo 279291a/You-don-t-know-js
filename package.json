@@ -1,0 +1,26 @@
+{
+  "name": "you-don-t-know",
+  "version": "1.0.0",
+  "description": "你不知道的js 中卷  实例代码 练手代码",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/279291a/You-don-t-know-js.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/279291a/You-don-t-know-js/issues"
+  },
+  "homepage": "https://github.com/279291a/You-don-t-know-js#readme",
+  "dependencies": {
+    "eslint": "^4.7.2",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-config-airbnb-base": "^12.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2"
+  }
+}
