@@ -8,3 +8,19 @@ console.log(a);    //VM2036:1 String {0: "a", 1: "b", 2: "c", length: 3, [[Primi
 
 Object.prototype.toString.call([1,2,3]); //[object Array]
 Object.prototype.toString.call(/js/i);  //[object RegExp]
+
+var a = new Array(3);
+var b = [undefined,undefined,undefined];
+var c =[];
+c.length = 3;
+
+a;    //[empty × 3]
+b;    //[undefined, undefined, undefined]
+c;    //[empty × 3]
+
+
+a.join('-');  //--
+b.join('-');  //--
+
+a.map(function(v,i){return i});  //[empty × 3]
+b.map(function(v,i){return i});  // [0, 1, 2]
