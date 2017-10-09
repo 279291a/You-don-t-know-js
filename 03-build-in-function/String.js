@@ -45,3 +45,8 @@ if(!Date.now){
     return (new Date()).getTime();
   }
 }
+
+// Symbol()
+
+var mysym = Symbol();
+mysym;
