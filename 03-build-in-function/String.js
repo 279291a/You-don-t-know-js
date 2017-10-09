@@ -24,3 +24,13 @@ b.join('-');  //--
 
 a.map(function(v,i){return i});  //[empty × 3]
 b.map(function(v,i){return i});  // [0, 1, 2]
+
+// 定义Date()
+var a = new Date();
+var b = Date();  //调用Date 时不带new关键字就会得到当前日期的字符串值
+
+a;  //Mon Oct 09 2017 15:06:21 GMT+0800 (中国标准时间)
+b;  //"Mon Oct 09 2017 15:06:21 GMT+0800 (中国标准时间)"
+
+a instanceof Date  //true
+b instanceof Date  //false 
