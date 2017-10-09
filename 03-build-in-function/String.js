@@ -34,3 +34,14 @@ b;  //"Mon Oct 09 2017 15:06:21 GMT+0800 (中国标准时间)"
 
 a instanceof Date  //true
 b instanceof Date  //false 
+
+// 获取当前时间
+
+var a = Date();
+
+//polyfill
+if(!Date.now){
+  Date.now = function(){
+    return (new Date()).getTime();
+  }
+}
