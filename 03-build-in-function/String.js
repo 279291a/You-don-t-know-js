@@ -50,3 +50,7 @@ if(!Date.now){
 
 var mysym = Symbol();
 mysym;
+
+typeof Function.prototype  //function
+RegExp.prototype.toString()  //  "/(?:)/"
+Array.isArray(Array.prototype)
