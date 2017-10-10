@@ -112,3 +112,8 @@ parseInt(a);  //42
 
 Number(b); // NaN
 parseInt(b); //42
+
+//parseInt 针对字符串值,遇到非字符串值会强制转换为字符串
+parseInt(true); // NaN
+parseInt(function(){}) //NaN
+parseInt([1,2,3]); // 1 
