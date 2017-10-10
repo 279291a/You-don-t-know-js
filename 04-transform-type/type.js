@@ -97,3 +97,7 @@ d; // Boolean {[[PrimitiveValue]]: false}
 e; //true
 
 Boolean(document.all); // false
+
+var d = new Date();
+
++d; //1507607173129
