@@ -132,3 +132,10 @@ function onlyOne(){
   }
   return sum === 1
 }
+
+//Symbole 类型允许从符号到字符串的显式类型转换，隠式类型转换会报错。
+var s1 = Symbol('cool');
+String(s1); // "Symbol(cool)"
+
+var s2 = Symbol('not cool');
+s2 + ''; // VM757:2 Uncaught TypeError: Cannot convert a Symbol value to a string
