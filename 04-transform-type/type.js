@@ -139,3 +139,20 @@ String(s1); // "Symbol(cool)"
 
 var s2 = Symbol('not cool');
 s2 + ''; // VM757:2 Uncaught TypeError: Cannot convert a Symbol value to a string
+
+// 对象和非对象之间的相等比较
+var a = null;
+var b = Object(a)
+a; //null
+b; //{}
+a == b; //false
+
+
+var c = undefined
+var d = Object(c)
+c == d; //false
+
+var e = NaN;
+var f = Object(e)
+f; //Number {[[PrimitiveValue]]: NaN}
+e == f //false
