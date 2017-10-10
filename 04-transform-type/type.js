@@ -121,3 +121,14 @@ parseInt([1,2,3]); // 1
 //字符串到数字的隠式转换
 [] + {} // "[object Object]"
 {} + [] // 0
+
+//布尔值到数字转换
+function onlyOne(){
+  var sum = 0;
+  for(var i = 0; i < arguments.length; i++ ){
+    if(arguments[i]){
+      sum += arguments
+    }
+  }
+  return sum === 1
+}
