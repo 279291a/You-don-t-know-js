@@ -101,3 +101,14 @@ Boolean(document.all); // false
 var d = new Date();
 
 +d; //1507607173129
+
+//解析和转换的关系
+
+var a = '42';
+var b = '42px';
+
+Number(a); // 42
+parseInt(a);  //42
+
+Number(b); // NaN
+parseInt(b); //42
