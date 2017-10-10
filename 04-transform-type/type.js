@@ -156,3 +156,21 @@ var e = NaN;
 var f = Object(e)
 f; //Number {[[PrimitiveValue]]: NaN}
 e == f //false
+
+Number.prototype.valueOf = function(){
+  return 3;
+}
+
+new Number(2) == 3; //true
+
+var i = 2;
+
+Number.prototype.valueOf = function(){
+  return i++;
+}
+
+var a = new Number(42);
+
+if(a == 2 && a==3){
+  console.log('this happened');  //this happened
+}
