@@ -82,3 +82,18 @@ JSON.stringify(a, null, '----' );
 //   --------"c": "3333"
 //   ----}
 //   }"
+
+
+// ToBoolan  假值对象
+
+var a = new Boolean(false);
+var b = new Boolean(0);
+var c = new Boolean('');
+
+var d = a && b && c;
+var e = Boolean(a && b && c);
+
+d; // Boolean {[[PrimitiveValue]]: false}
+e; //true
+
+Boolean(document.all); // false
