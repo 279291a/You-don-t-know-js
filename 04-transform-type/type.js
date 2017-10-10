@@ -117,3 +117,7 @@ parseInt(b); //42
 parseInt(true); // NaN
 parseInt(function(){}) //NaN
 parseInt([1,2,3]); // 1 
+
+//字符串到数字的隠式转换
+[] + {} // "[object Object]"
+{} + [] // 0
