@@ -35,3 +35,19 @@ var a = {
 {
   foo:bar()  //标签语句
 }
+
+//运算符优先级
+
+var a = 42;
+var b = 'foo';
+var c = [1,2,3];
+
+a && b || c;  //foo
+a || b && c; //42
+
+var a = 42;
+var b = 'foo';
+var c = false;
+var d = a && b || c ? c || b ? a : c && b : a;
+d; //42
+
