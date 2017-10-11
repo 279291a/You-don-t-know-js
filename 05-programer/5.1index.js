@@ -70,3 +70,62 @@ function foo(a){
 
 foo(2); //2
 foo(); //undefined
+
+// try...finally
+function foo(){
+  try{
+    return 42;
+  }
+  finally{
+    console.log('hello')
+  }
+
+  console.log('never runs');
+}
+
+foo();
+//hello 
+//42
+
+function foo(){
+  try{
+    throw 42;
+  }
+  finally{
+    console.log('hello')
+  }
+
+  console.log('never runs');
+}
+
+foo();
+// hello
+// VM1285:3 Uncaught 42
+
+//finally中抛出异常，函数会在此终止。如果此前try 中已经有return 设置了返回值，则该值会被丢弃
+function foo(){
+  try{
+    return 42;
+  }
+  finally{
+    throw 'oops';
+  }
+  console.log('never runs');
+}
+
+foo(); //Uncaught oops
+
+function foo(){
+  bar:{
+    try{
+      return 42;
+    }
+    finally{
+      break bar;
+    }
+  }
+  console.log('crazy');
+  return 'hello';
+}
+
+foo();
