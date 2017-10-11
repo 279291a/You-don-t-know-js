@@ -51,3 +51,22 @@ var c = false;
 var d = a && b || c ? c || b ? a : c && b : a;
 d; //42
 
+// 函数参数
+function foo(a){
+  a=42;
+  console.log(arguments[0]);
+}
+
+foo(2); //42
+foo() //undefined
+
+//严格模式不建立关联
+
+function foo(a){
+  'use strict';
+  a = 42;
+  console.log(arguments[0]);
+}
+
+foo(2); //2
+foo(); //undefined
