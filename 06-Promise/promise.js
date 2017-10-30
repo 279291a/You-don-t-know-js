@@ -91,7 +91,7 @@ p
  * 向封装的Promise引入异步，仍然可以工作
  */
 
-var p =Promise.resolve(21);
+var p = Promise.resolve(21);
 
 p.then(function (v) {
   console.log(v);
@@ -104,49 +104,65 @@ p.then(function (v) {
     }, 3000);
   });
 })
-.then(function(v){
-  //在前一步中的3000ms延迟之后运行
-  console.log(v);
-})
+  .then(function (v) {
+    //在前一步中的3000ms延迟之后运行
+    console.log(v);
+  })
 
 /**
  * 推迟Promise创建
  */
-function delay(time){
-  return new Promise(function(resolve,reject){
+function delay(time) {
+  return new Promise(function (resolve, reject) {
     setTimeout(resolve, time);
   });
 }
 
 delay(1000)
-  .then(function STEP2(){
+  .then(function STEP2() {
     console.log('step 2 after 100ms');
     return delay(2000)
   })
-  .then(function STEP3(){
+  .then(function STEP3() {
     console.log('step3 after another 2000ms');
   })
-  .then(function STEP4(){
+  .then(function STEP4() {
     console.log('step4 after (next job)');
     return delay(50);
   })
-  .then(function STEP5(){
+  .then(function STEP5() {
     console.log('step 5 after another 50ms')
   })
 
-  /**
-   * 默认拒绝处理函数只是把错误重新抛出，这最终会使得p2 用同样的错误理由拒绝，
-   * 从本质上来说，这使得错误可以继续沿着Promise链传播下去，中到遇到显式定义的拒绝处理函数
-   */
-  var p = new Promise(function(resolve,reject){
-    reject('OOps');
-  });
+/**
+ * 默认拒绝处理函数只是把错误重新抛出，这最终会使得p2 用同样的错误理由拒绝，
+ * 从本质上来说，这使得错误可以继续沿着Promise链传播下去，中到遇到显式定义的拒绝处理函数
+ */
+var p = new Promise(function (resolve, reject) {
+  reject('OOps');
+});
 
-  var p2 = p.then(
-    function fulfilled(){
-      console.log('aaaaa');  //永远不会到达这里
-    },
-    function(err){
-      throw err;
-    }
-  );
+var p2 = p.then(
+  function fulfilled() {
+    console.log('aaaaa');  //永远不会到达这里
+  },
+  function (err) {
+    throw err;
+  }
+);
+
+/**
+ * 如果没有给then()传递一个适当有效的函数作为完成处理函数参数，还是会有作为替代的一个默认处理函数
+ * 默认的完成处理函数只是把接收到的传入值传递给下一个步骤（Promise）而已。
+ */
+var p = Promise.resolve(42);
+
+p.then(
+  function (v) {
+    return v;
+  },
+  null,
+  function rejected(err){
+    //永远不会到达这里
+  }
+)
