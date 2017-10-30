@@ -54,35 +54,57 @@ p3 === p4;//true
 //传递非Promise 的thenable 值，将会试图展开这个值，而且展开过程会持续到提取出一个具体的非类Promise的最终值
 
 var p = {
-  then:function(cb){
+  then: function (cb) {
     cb(42);
   }
 }
 
 p
   .then(
-    function fulfilled(val){
-      console.log(val);  //42
-    },
-    function rejected(err){
-      console.log(err);  //永远不会运行
-    }
+  function fulfilled(val) {
+    console.log(val);  //42
+  },
+  function rejected(err) {
+    console.log(err);  //永远不会运行
+  }
   )
 
 //另一种
 var p = {
-  then:function(cb,errcb){
+  then: function (cb, errcb) {
     cb(42);
     errcb('wrong');
   }
 };
 
 p
-.then(
-  function fulfilled(val){
+  .then(
+  function fulfilled(val) {
     console.log(val);  //42
   },
-  function rejected(err){
+  function rejected(err) {
     console.log(err);  //wrong
   }
-)
+  )
+
+/**
+ * 向封装的Promise引入异步，仍然可以工作
+ */
+
+var p =Promise.resolve(21);
+
+p.then(function (v) {
+  console.log(v);
+
+  //创建一个promise 并返回
+  return new Promise(function (resolve, reject) {
+    //引入异步
+    setTimeout(function () {
+      resolve(v * 2);
+    }, 3000);
+  });
+})
+.then(function(v){
+  //在前一步中的3000ms延迟之后运行
+  console.log(v);
+})
