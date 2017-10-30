@@ -162,7 +162,48 @@ p.then(
     return v;
   },
   null,
-  function rejected(err){
+  function rejected(err) {
     //永远不会到达这里
   }
 )
+
+/**
+ * 错误处理：很容易被吞掉
+ */
+
+ //正常情况
+ var p = Promise.reject('Oops');
+
+ p.then(
+   function fulfilled(){
+     //永远不会到达这里
+   },
+   function rejected(err){
+     console.log(err); //Oops
+   }
+ );
+
+ //错误被吞掉
+ var p = Promise.resolve(42);
+ 
+  p.then(
+    function fulfilled(msg){
+      console.log(msg.toLowerCase());//会跑出错误
+    },
+    function rejected(err){
+      console.log(err); //永远不会到达这里
+    }
+  );
+
+/**
+ * done处理异常
+ */
+
+var p = Promise.resolve(42);
+
+p.then(
+  function fulfilled(msg) {
+    console.log(msg.toLowerCase());
+  }
+)
+  .done(null, handleErrors);
