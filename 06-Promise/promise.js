@@ -133,3 +133,20 @@ delay(1000)
   .then(function STEP5(){
     console.log('step 5 after another 50ms')
   })
+
+  /**
+   * 默认拒绝处理函数只是把错误重新抛出，这最终会使得p2 用同样的错误理由拒绝，
+   * 从本质上来说，这使得错误可以继续沿着Promise链传播下去，中到遇到显式定义的拒绝处理函数
+   */
+  var p = new Promise(function(resolve,reject){
+    reject('OOps');
+  });
+
+  var p2 = p.then(
+    function fulfilled(){
+      console.log('aaaaa');  //永远不会到达这里
+    },
+    function(err){
+      throw err;
+    }
+  );
