@@ -108,3 +108,28 @@ p.then(function (v) {
   //在前一步中的3000ms延迟之后运行
   console.log(v);
 })
+
+/**
+ * 推迟Promise创建
+ */
+function delay(time){
+  return new Promise(function(resolve,reject){
+    setTimeout(resolve, time);
+  });
+}
+
+delay(1000)
+  .then(function STEP2(){
+    console.log('step 2 after 100ms');
+    return delay(2000)
+  })
+  .then(function STEP3(){
+    console.log('step3 after another 2000ms');
+  })
+  .then(function STEP4(){
+    console.log('step4 after (next job)');
+    return delay(50);
+  })
+  .then(function STEP5(){
+    console.log('step 5 after another 50ms')
+  })
